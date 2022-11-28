@@ -24,7 +24,7 @@
 #endif
 
 //defaults values
-const char* const DEFAULT_BT_NAME = "btgrblesp";
+const char* const DEFAULT_BT_NAME = "xPRO_V5_BT";
 
 #include <BluetoothSerial.h>
 

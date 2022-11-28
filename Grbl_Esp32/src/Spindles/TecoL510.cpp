@@ -76,7 +76,7 @@ namespace Spindles {
         data.msg[5] = uint8_t(freq & 0xFF);
 
 #ifdef VFD_DEBUG_MODE2
-        grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "setting speed to: %d", speed);
+    //    grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "setting speed to: %d", speed);
 #endif
     }
     uint16_t L510::rpm_to_frequency(uint32_t rpm) {

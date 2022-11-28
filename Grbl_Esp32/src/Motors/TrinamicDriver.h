@@ -53,7 +53,7 @@ const double TRINAMIC_FCLK = 12700000.0;  // Internal clock Approx (Hz) used to 
 #endif
 
 #ifndef TRINAMIC_TOFF_STEALTHCHOP
-#    define TRINAMIC_TOFF_STEALTHCHOP 5
+#    define TRINAMIC_TOFF_STEALTHCHOP 3
 #endif
 
 #ifndef TRINAMIC_TOFF_COOLSTEP

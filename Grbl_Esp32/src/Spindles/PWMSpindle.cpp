@@ -51,6 +51,10 @@ namespace Spindles {
         ledcAttachPin(_output_pin, _pwm_chan_num);                    // attach the PWM to the pin
         pinMode(_enable_pin, OUTPUT);
         pinMode(_direction_pin, OUTPUT);
+		
+		#ifdef SPINDLE_ENABLE_PIN_HIGH
+			digitalWrite(_enable_pin, true);
+		#endif
 
         config_message();
     }

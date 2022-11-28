@@ -76,7 +76,9 @@ namespace Motors {
         if (_cs_pin >= I2S_OUT_PIN_BASE) {
             (tmc2130) ? tmc2130->setSPISpeed(TRINAMIC_SPI_FREQ) : tmc5160->setSPISpeed(TRINAMIC_SPI_FREQ);
         }
-
+		
+		tmc5160->setSPISpeed(TRINAMIC_SPI_FREQ);  
+		
         link = List;
         List = this;
 
@@ -280,6 +282,11 @@ namespace Motors {
                     tmc5160->en_pwm_mode(true);
                     tmc5160->pwm_autoscale(true);
                     tmc5160->diag1_stall(false);
+					tmc5160->diag0_error(true);
+					tmc5160->diag0_otpw(true);
+					tmc5160->diag0_int_pushpull(false);
+					tmc5160->TPWMTHRS(1200000);
+					
                     break;
                 case TrinamicMode ::CoolStep:
                     //grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "Coolstep");
@@ -287,6 +294,14 @@ namespace Motors {
                     tmc5160->pwm_autoscale(false);
                     tmc5160->TCOOLTHRS(NORMAL_TCOOLTHRS);  // when to turn on coolstep
                     tmc5160->THIGH(NORMAL_THIGH);
+					tmc5160->diag0_error(true);
+					tmc5160->diag0_otpw(true);
+					tmc5160->diag0_int_pushpull(false);
+					tmc5160->tbl(2);
+					tmc5160->hstrt(0);
+					tmc5160->hend(0);
+					tmc5160->toff(3);
+
                     break;
                 case TrinamicMode ::StallGuard:
                     //grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "Stallguard");
@@ -378,12 +393,12 @@ namespace Motors {
 
 #ifdef USE_TRINAMIC_ENABLE
         if (_disabled) {
-            tmcstepper->toff(TRINAMIC_TOFF_DISABLE);
+            tmc5160->toff(TRINAMIC_TOFF_DISABLE);
         } else {
             if (_mode == TrinamicMode::StealthChop) {
-                tmcstepper->toff(TRINAMIC_TOFF_STEALTHCHOP);
+                tmc5160->toff(TRINAMIC_TOFF_STEALTHCHOP);
             } else {
-                tmcstepper->toff(TRINAMIC_TOFF_COOLSTEP);
+                tmc5160->toff(TRINAMIC_TOFF_COOLSTEP);
             }
         }
 #endif
