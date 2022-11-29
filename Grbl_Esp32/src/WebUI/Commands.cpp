@@ -29,6 +29,7 @@ esp_err_t esp_task_wdt_reset();
 
 namespace WebUI {
     bool COMMANDS::restart_ESP_module = false;
+    bool COMMANDS::deep_sleep_ESP_module = false;
 
     /*
      * delay is to avoid with asyncwebserver and may need to wait sometimes
@@ -68,6 +69,12 @@ namespace WebUI {
     void COMMANDS::restart_ESP() { restart_ESP_module = true; }
 
     /**
+     * deep sleep
+    */
+    void COMMANDS::deep_sleep_ESP() { deep_sleep_ESP_module = true; }
+
+
+    /**
      * Handle not critical actions that must be done in sync environement
      */
     void COMMANDS::handle() {
@@ -75,6 +82,12 @@ namespace WebUI {
         //in case of restart requested
         if (restart_ESP_module) {
             ESP.restart();
+            while (1) {}
+        }
+        if (deep_sleep_ESP_module) {
+            uint64_t sleep_time = 31536000 * 1000000ULL; // one year
+            esp_sleep_enable_timer_wakeup(sleep_time);
+            esp_deep_sleep_start();
             while (1) {}
         }
     }

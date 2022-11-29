@@ -411,13 +411,27 @@ namespace WebUI {
 
     static Error setSystemMode(char* parameter, AuthenticationLevel auth_level) {  // ESP444
         parameter = trim(parameter);
-        if (strcasecmp(parameter, "RESTART") != 0) {
-            webPrintln("Incorrect command");
-            return Error::InvalidValue;
+        // if (strcasecmp(parameter, "RESTART") != 0) {
+        //     webPrintln("Incorrect command");
+        //     return Error::InvalidValue;
+        // }
+        // grbl_send(CLIENT_ALL, "[MSG:Restart ongoing]\r\n");
+        // COMMANDS::restart_ESP();
+        // return Error::Ok;
+
+        if (strcasecmp(parameter, "RESTART") == 0) {
+            grbl_send(CLIENT_ALL, "[MSG:Restart ongoing]\r\n");
+            COMMANDS::restart_ESP();
+            return Error::Ok;
         }
-        grbl_send(CLIENT_ALL, "[MSG:Restart ongoing]\r\n");
-        COMMANDS::restart_ESP();
-        return Error::Ok;
+        if (strcasecmp(parameter, "SLEEP") == 0) {
+            grbl_send(CLIENT_ALL, "[MSG:I am going to sleep for a very long time now]\r\n");
+            COMMANDS::deep_sleep_ESP();
+            return Error::Ok;
+        }
+
+        webPrintln("Incorrect command");
+        return Error::InvalidValue;
     }
 
     static Error showSysStats(char* parameter, AuthenticationLevel auth_level) {  // ESP420
@@ -431,6 +445,29 @@ namespace WebUI {
         // Round baudRate to nearest 100 because ESP32 can say e.g. 115201
         webPrintln("Baud rate: ", String((Serial.baudRate() / 100) * 100));
         webPrintln("Sleep mode: ", WiFi.getSleep() ? "Modem" : "None");
+
+        esp_sleep_wakeup_cause_t wakeup_reason;
+        wakeup_reason = esp_sleep_get_wakeup_cause();
+
+        switch(wakeup_reason){
+            case ESP_SLEEP_WAKEUP_EXT0 : 
+                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_EXT0");
+                break;
+            case ESP_SLEEP_WAKEUP_EXT1 : 
+                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_EXT1");
+            case ESP_SLEEP_WAKEUP_TIMER : 
+                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_TIMER");
+                break;
+            case ESP_SLEEP_WAKEUP_TOUCHPAD : 
+                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_TOUCHPAD");
+                break;
+            case ESP_SLEEP_WAKEUP_ULP : 
+                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_ULP");
+                break;
+            default : 
+                webPrintln("Wakeup reason : Wakeup not caused by sleep");
+                break;
+        }
 
 #ifdef ENABLE_WIFI
         int mode = WiFi.getMode();
@@ -1069,6 +1106,7 @@ namespace WebUI {
 #endif
 #ifdef WEB_COMMON
         new WebCommand("RESTART", WEBCMD, WA, "ESP444", "System/Control", setSystemMode);
+        new WebCommand("SLEEP", WEBCMD, WA, "ESP444", "System/Control", setSystemMode);
         new WebCommand(NULL, WEBCMD, WU, "ESP420", "System/Stats", showSysStats, anyState);
 #endif
 #ifdef ENABLE_WIFI
