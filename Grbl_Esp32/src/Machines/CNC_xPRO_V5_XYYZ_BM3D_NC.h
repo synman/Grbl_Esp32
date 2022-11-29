@@ -29,7 +29,7 @@
 
 
 //Name your machine configuration - this can be viewed real-time using the $i command
-#define MACHINE_NAME "CNC_xPRO_V5_XYYZ_NC"
+#define MACHINE_NAME "CNC_xPRO_V5_XYYZ_BM3D_NC"
 
 
 //Define the number of Axis being used (not the number of motors needed - ex. XYYZ machine is still 3 axis) 
@@ -109,15 +109,17 @@ These correspond to the specific hardware on the controller.  */
 #define VFD_RS485_TXD_PIN		GPIO_NUM_4
 #define VFD_RS485_RXD_PIN		GPIO_NUM_25
 #define DEFAULT_SPINDLE_RPM_MAX     24000
-//#define SPINDLE_ENABLE_PIN_HIGH  1  // flag to catch constant on _enable_pin for BM3D lasers 
+#define SPINDLE_ENABLE_PIN_HIGH  1  // flag to catch constant on _enable_pin for BM3D lasers 
 
 /********************************************/
+
+
 
 
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
 #define X_LIMIT_PIN             GPIO_NUM_35
-//#define Y2_LIMIT_PIN            GPIO_NUM_36
+//#define A_LIMIT_PIN             GPIO_NUM_36
 #define Y_LIMIT_PIN             GPIO_NUM_34
 #define Z_LIMIT_PIN             GPIO_NUM_39
 #define MACRO_BUTTON_1_PIN      GPIO_NUM_13
@@ -151,7 +153,7 @@ These correspond to the specific hardware on the controller.  */
 #    define DEFAULT_A_CURRENT 1.8
 
 //default motor hold current
-//this setting should be roughly 5-50% of the run current
+//this setting should be roughly 35-75% of the run current
 #    define DEFAULT_X_HOLD_CURRENT 0.25
 #    define DEFAULT_Y_HOLD_CURRENT 0.25
 #    define DEFAULT_Z_HOLD_CURRENT 0.25
@@ -185,3 +187,4 @@ These correspond to the specific hardware on the controller.  */
 // Macro3 | Macro2 | Macro 1| Macr0 |Cycle Start | Feed Hold | Reset | Safety Door
 // 1 for NO switch, 0 for NC switch
 #	  define INVERT_CONTROL_PIN_MASK B01111110
+

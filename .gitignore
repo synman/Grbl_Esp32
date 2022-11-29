@@ -21,3 +21,4 @@ __vm/
 *.suo
 Grbl_Esp32.ino.cpp
 /packages
+extra_script.py

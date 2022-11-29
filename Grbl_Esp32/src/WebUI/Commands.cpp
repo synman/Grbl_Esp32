@@ -86,13 +86,26 @@ namespace WebUI {
         }
         if (deep_sleep_ESP_module) {
             // put grbl to sleep
-            // if (sys.state != State::Sleep) {
-            //     sys_rt_exec_state.bit.sleep = true;
-            //     delay_msec(5000, DwellMode::Dwell);
-            // }
-            // now we go to deep sleep
+            if (sys.state != State::Sleep) {
+                spindle->set_state(SpindleState::Disable, 0);  // De-energize
+                grbl_send(CLIENT_ALL, "[MSG:Spindle Disabled]\r\n");
+                coolant_off();
+                grbl_send(CLIENT_ALL, "[MSG:Coolant Off]\r\n");
+                motors_set_disable(true);  // Disable steppers
+                grbl_send(CLIENT_ALL, "[MSG:Steppers Disabled]\r\n");
+                protocol_exec_rt_system();
+                delay_msec(5000, DwellMode::Dwell);
+            }
+            // now we go to deep sleep (hibernate)
+            esp_sleep_pd_config(ESP_PD_DOMAIN_MAX, ESP_PD_OPTION_OFF);
+            esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH,   ESP_PD_OPTION_OFF);
+            esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_OFF);
+            esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_OFF);
+            esp_sleep_pd_config(ESP_PD_DOMAIN_XTAL,         ESP_PD_OPTION_OFF);
+
             uint64_t sleep_time = 31536000 * 1000000ULL; // for one year
             esp_sleep_enable_timer_wakeup(sleep_time);
+            grbl_send(CLIENT_ALL, "[MSG:Entering Deep Sleep Hibernation]\r\n");
             esp_deep_sleep_start();
             while (1) {}
         }

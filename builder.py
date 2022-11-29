@@ -15,12 +15,12 @@ def buildMachine(baseName, verbose=True, extraArgs=None):
         cmd.append(extraArgs)
     displayName = baseName
     flags = '-DMACHINE_FILENAME=' + baseName
-    print('Building machine ' + displayName)
+    print('Building machine ' + displayName.replace(".h", ""))
     env['PLATFORMIO_BUILD_FLAGS'] = flags
     if verbose:
         app = subprocess.Popen(cmd, env=env)
     else:
-        app = subprocess.Popen(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, bufsize=1)
+        app = subprocess.Popen(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         for line in app.stdout:
             line = line.decode('utf8')
             if "Took" in line or 'Uploading' in line or ("error" in line.lower() and "Compiling" not in line):

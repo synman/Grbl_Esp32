@@ -29,7 +29,7 @@
 
 
 //Name your machine configuration - this can be viewed real-time using the $i command
-#define MACHINE_NAME "CNC_xPRO_V5_XYYZ_NC"
+#define MACHINE_NAME "CNC_xPRO_V5_XYYZ_NC_Y2Lim"
 
 
 //Define the number of Axis being used (not the number of motors needed - ex. XYYZ machine is still 3 axis) 
@@ -117,7 +117,7 @@ These correspond to the specific hardware on the controller.  */
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
 #define X_LIMIT_PIN             GPIO_NUM_35
-//#define Y2_LIMIT_PIN            GPIO_NUM_36
+#define Y2_LIMIT_PIN            GPIO_NUM_36
 #define Y_LIMIT_PIN             GPIO_NUM_34
 #define Z_LIMIT_PIN             GPIO_NUM_39
 #define MACRO_BUTTON_1_PIN      GPIO_NUM_13

@@ -29,7 +29,7 @@
 
 
 //Name your machine configuration - this can be viewed real-time using the $i command
-#define MACHINE_NAME "CNC_xPRO_V5_XYYZ_NC"
+#define MACHINE_NAME "CNC_xPRO_V5_XY_NO"
 
 
 //Define the number of Axis being used (not the number of motors needed - ex. XYYZ machine is still 3 axis) 
@@ -44,6 +44,7 @@
 #define TRINAMIC_RUN_MODE           TrinamicMode :: CoolStep
 #define TRINAMIC_HOMING_MODE        TrinamicMode :: CoolStep
 #define USE_TRINAMIC_ENABLE
+
 /**********************************************************/
 
 /**************************MOTOR SETUP*********************
@@ -117,71 +118,72 @@ These correspond to the specific hardware on the controller.  */
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
 #define X_LIMIT_PIN             GPIO_NUM_35
-//#define Y2_LIMIT_PIN            GPIO_NUM_36
+//#define A_LIMIT_PIN             GPIO_NUM_36
 #define Y_LIMIT_PIN             GPIO_NUM_34
 #define Z_LIMIT_PIN             GPIO_NUM_39
-#define MACRO_BUTTON_1_PIN      GPIO_NUM_13
-#define MACRO_BUTTON_2_PIN      GPIO_NUM_0
+#define CONTROL_FEED_HOLD_PIN      GPIO_NUM_13
+#define CONTROL_CYCLE_START_PIN      GPIO_NUM_0
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
 /********************************************/
 
-
+//#define DEFAULT_USER_MACRO1 "!"
+//#define DEFAULT_USER_MACRO2	"~" 
 
 // Default configuration - assuming screw TR8*8 screw driven machine in XYYZ config
-//steps per mm - use 200 for TR8*8 screws, and 26.667 for belts
-#define DEFAULT_X_STEPS_PER_MM 200.0
-#define DEFAULT_Y_STEPS_PER_MM 200.0
-#define DEFAULT_Z_STEPS_PER_MM 200.0
-#define DEFAULT_A_STEPS_PER_MM 200.0
+ //steps per mm - use 200 for TR8*8 screws, and 26.667 for belts 
+ #define DEFAULT_X_STEPS_PER_MM 200.0
+ #define DEFAULT_Y_STEPS_PER_MM 200.0
+ #define DEFAULT_Z_STEPS_PER_MM 200.0
+ #define DEFAULT_A_STEPS_PER_MM 200.0
 
-//max speed
-#    define DEFAULT_X_MAX_RATE 2500.0
-#    define DEFAULT_Y_MAX_RATE 2500.0
-#    define DEFAULT_Z_MAX_RATE 2500.0
-
-#    define DEFAULT_X_ACCELERATION 50.0
-#    define DEFAULT_Y_ACCELERATION 50.0
-#    define DEFAULT_Z_ACCELERATION 50.0
-
-//default motor run current
-// this setting = (max motor current * 0.707)*0.9
-#    define DEFAULT_X_CURRENT 1.8
-#    define DEFAULT_Y_CURRENT 1.8
-#    define DEFAULT_Z_CURRENT 1.8
-#    define DEFAULT_A_CURRENT 1.8
-
-//default motor hold current
-//this setting should be roughly 5-50% of the run current
-#    define DEFAULT_X_HOLD_CURRENT 0.25
-#    define DEFAULT_Y_HOLD_CURRENT 0.25
-#    define DEFAULT_Z_HOLD_CURRENT 0.25
-#    define DEFAULT_A_HOLD_CURRENT 0.25
-
-//micro steps
-#    define DEFAULT_X_MICROSTEPS 8
-#    define DEFAULT_Y_MICROSTEPS 8
-#    define DEFAULT_Z_MICROSTEPS 8
-
-//homing
-// Home Z axis to clear workspace, then home X and Y at same time
-#    define DEFAULT_HOMING_CYCLE_0 bit(Z_AXIS)
-#    define DEFAULT_HOMING_CYCLE_1 (bit(X_AXIS) | bit(Y_AXIS))
-#    define DEFAULT_HOMING_PULLOFF 2.5
-
-//Stepper settings
-#    define DEFAULT_STEP_PULSE_MICROSECONDS 4
-#    define DEFAULT_STEPPER_IDLE_LOCK_TIME 255
-
-//switches and probes - 1 =  NO switches, 0 = NC switches
-#    define DEFAULT_INVERT_PROBE_PIN 1
-#    define DEFAULT_INVERT_LIMIT_PINS 1
-
+ //max speed
+ #    define DEFAULT_X_MAX_RATE 2500.0 
+ #    define DEFAULT_Y_MAX_RATE 2500.0 
+ #    define DEFAULT_Z_MAX_RATE 2500.0 
+ 
+ #    define DEFAULT_X_ACCELERATION 50.0
+ #    define DEFAULT_Y_ACCELERATION 50.0
+ #    define DEFAULT_Z_ACCELERATION 50.0
+ 
+ //default motor run current
+ // this setting = (max motor current * 0.707)*0.9 
+ #    define DEFAULT_X_CURRENT 1.8
+ #    define DEFAULT_Y_CURRENT 1.8
+ #    define DEFAULT_Z_CURRENT 1.8
+ #    define DEFAULT_A_CURRENT 1.8
+ 
+ //default motor hold current
+ //this setting should be roughly 25-75% of the run current
+ #    define DEFAULT_X_HOLD_CURRENT 0.5
+ #    define DEFAULT_Y_HOLD_CURRENT 0.5 
+ #    define DEFAULT_Z_HOLD_CURRENT 0.5 
+ #    define DEFAULT_A_HOLD_CURRENT 0.5 
+ 
+ //micro steps
+ #    define DEFAULT_X_MICROSTEPS 8
+ #    define DEFAULT_Y_MICROSTEPS 8
+ #    define DEFAULT_Z_MICROSTEPS 8
+ 
+ //homing 
+ // Home Z axis to clear workspace, then home X and Y at same time
+ #    define DEFAULT_HOMING_CYCLE_0 bit(Z_AXIS)
+ #    define DEFAULT_HOMING_CYCLE_1 (bit(X_AXIS) | bit(Y_AXIS))
+ #    define DEFAULT_HOMING_PULLOFF 2.5
+ 
+ //Stepper settings
+ #    define DEFAULT_STEP_PULSE_MICROSECONDS 4
+ #    define DEFAULT_STEPPER_IDLE_LOCK_TIME 255
+ 
+ //switches and probes - 1 =  NO switches, 0 = NC switches
+ #    define DEFAULT_INVERT_PROBE_PIN 1
+ #    define DEFAULT_INVERT_LIMIT_PINS 1
+ 
 //Control Safety Door Switch
-#ifdef INVERT_CONTROL_PIN_MASK
-#undef INVERT_CONTROL_PIN_MASK
-#endif
-// For NC Door switch INVERT_CONTROL_PIN_MASK = B00001110
-// For NO Door switch INVERT_CONTROL_PIN_MASK = B00001111
-// Macro3 | Macro2 | Macro 1| Macr0 |Cycle Start | Feed Hold | Reset | Safety Door
-// 1 for NO switch, 0 for NC switch
-#	  define INVERT_CONTROL_PIN_MASK B01111110
+ #ifdef INVERT_CONTROL_PIN_MASK
+	#undef INVERT_CONTROL_PIN_MASK
+ #endif
+ // For NC Door switch INVERT_CONTROL_PIN_MASK = B00001110
+ // For NO Door switch INVERT_CONTROL_PIN_MASK = B00001111
+ // Macro3 | Macro2 | Macro 1| Macr0 |Cycle Start | Feed Hold | Reset | Safety Door
+ // 1 for NO switch, 0 for NC switch
+ #	  define INVERT_CONTROL_PIN_MASK B01111111
