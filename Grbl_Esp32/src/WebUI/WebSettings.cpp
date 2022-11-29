@@ -449,23 +449,44 @@ namespace WebUI {
         esp_sleep_wakeup_cause_t wakeup_reason;
         wakeup_reason = esp_sleep_get_wakeup_cause();
 
+        webPrint("Wakeup reason: ");
+
         switch(wakeup_reason){
-            case ESP_SLEEP_WAKEUP_EXT0 : 
-                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_EXT0");
+            case ESP_SLEEP_WAKEUP_EXT0:         //!< Wakeup caused by external signal using RTC_IO
+                webPrintln("ESP_SLEEP_WAKEUP_EXT0");
                 break;
-            case ESP_SLEEP_WAKEUP_EXT1 : 
-                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_EXT1");
-            case ESP_SLEEP_WAKEUP_TIMER : 
-                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_TIMER");
+            case ESP_SLEEP_WAKEUP_EXT1:         //!< Wakeup caused by external signal using RTC_CNTL
+                webPrintln("ESP_SLEEP_WAKEUP_EXT1");
                 break;
-            case ESP_SLEEP_WAKEUP_TOUCHPAD : 
-                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_TOUCHPAD");
+            case ESP_SLEEP_WAKEUP_TIMER:        //!< Wakeup caused by timer
+                webPrintln("ESP_SLEEP_WAKEUP_TIMER");
                 break;
-            case ESP_SLEEP_WAKEUP_ULP : 
-                webPrintln("Wakeup reason : ESP_SLEEP_WAKEUP_ULP");
+            case ESP_SLEEP_WAKEUP_TOUCHPAD:     //!< Wakeup caused by touchpad
+                webPrintln("ESP_SLEEP_WAKEUP_TOUCHPAD");
                 break;
-            default : 
-                webPrintln("Wakeup reason : Wakeup not caused by sleep");
+            case ESP_SLEEP_WAKEUP_ULP:          //!< Wakeup caused by ULP program
+                webPrintln("ESP_SLEEP_WAKEUP_ULP");
+                break;
+            case ESP_SLEEP_WAKEUP_GPIO:         //!< Wakeup caused by GPIO (light sleep only)
+                webPrintln("ESP_SLEEP_WAKEUP_GPIO");
+                break;
+            case ESP_SLEEP_WAKEUP_UART:         //!< Wakeup caused by UART (light sleep only)
+                webPrintln("ESP_SLEEP_WAKEUP_UART");
+                break;
+            case ESP_SLEEP_WAKEUP_WIFI:              //!< Wakeup caused by WIFI (light sleep only)
+                webPrintln("ESP_SLEEP_WAKEUP_WIFI");
+                break;
+            case ESP_SLEEP_WAKEUP_COCPU:             //!< Wakeup caused by COCPU int
+                webPrintln("ESP_SLEEP_WAKEUP_COCPU");
+                break;
+            case ESP_SLEEP_WAKEUP_COCPU_TRAP_TRIG:   //!< Wakeup caused by COCPU crash
+                webPrintln("ESP_SLEEP_WAKEUP_COCPU_TRAP_TRIG");
+                break;
+            case ESP_SLEEP_WAKEUP_BT:           //!< Wakeup caused by BT (light sleep only)
+                webPrintln("ESP_SLEEP_WAKEUP_BT");
+                break;
+            default:
+                webPrintln("Was not sleeping");
                 break;
         }
 

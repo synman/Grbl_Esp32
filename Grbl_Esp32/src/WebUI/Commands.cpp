@@ -85,7 +85,13 @@ namespace WebUI {
             while (1) {}
         }
         if (deep_sleep_ESP_module) {
-            uint64_t sleep_time = 31536000 * 1000000ULL; // one year
+            // put grbl to sleep
+            // if (sys.state != State::Sleep) {
+            //     sys_rt_exec_state.bit.sleep = true;
+            //     delay_msec(5000, DwellMode::Dwell);
+            // }
+            // now we go to deep sleep
+            uint64_t sleep_time = 31536000 * 1000000ULL; // for one year
             esp_sleep_enable_timer_wakeup(sleep_time);
             esp_deep_sleep_start();
             while (1) {}
