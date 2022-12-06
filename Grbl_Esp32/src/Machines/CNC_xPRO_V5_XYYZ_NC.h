@@ -41,7 +41,7 @@
 
 /***************************DO NOT CHANGE*******************/
 #define TRINAMIC_DAISY_CHAIN
-#define TRINAMIC_RUN_MODE           TrinamicMode :: CoolStep
+#define TRINAMIC_RUN_MODE           TrinamicMode :: StealthChop
 #define TRINAMIC_HOMING_MODE        TrinamicMode :: CoolStep
 #define USE_TRINAMIC_ENABLE
 /**********************************************************/
