@@ -8,6 +8,7 @@ from __future__ import print_function
 import subprocess, os
 
 env = dict(os.environ)
+app = None
 
 def buildMachine(baseName, verbose=True, extraArgs=None):
     cmd = ['platformio','run']

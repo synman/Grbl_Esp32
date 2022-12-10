@@ -24,7 +24,7 @@
 #endif
 
 //defaults values
-const char* const DEFAULT_BT_NAME = "xPRO_V5_BT";
+const char* const DEFAULT_BT_NAME = "BlackBox_X32-BT";
 
 #include <BluetoothSerial.h>
 

@@ -27,7 +27,7 @@ names = os.listdir('Grbl_Esp32/src/Machines')
 print()
 
 for name in names:
-    if "xPRO" in name:
+    if "OpenBuilds" in name:
         exitCode = buildMachine(name, verbose=verbose)
         if exitCode != 0:
             numErrors += 1
