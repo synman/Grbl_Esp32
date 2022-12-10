@@ -38,22 +38,18 @@
 // X motor connects to the 1st driver, and the X port on the case 
 #define X_STEP_PIN              GPIO_NUM_12
 #define X_DIRECTION_PIN         GPIO_NUM_14
-#define X_CS_PIN                GPIO_NUM_17  
 
 // Y motor connects to the 2nd driver, and the Y port on the case
 #define Y_STEP_PIN              GPIO_NUM_27
 #define Y_DIRECTION_PIN         GPIO_NUM_26
-#define Y_CS_PIN                X_CS_PIN  
 
 // A motor connects to the 3rd driver, and the Y2/A port on the case
 #define A_STEP_PIN              GPIO_NUM_33  
 #define A_DIRECTION_PIN         GPIO_NUM_32  
-#define A_CS_PIN                X_CS_PIN 
 
 // Z Axis motor connects to the 4th driver, and the Z port on the case
 #define Z_STEP_PIN              GPIO_NUM_15 
 #define Z_DIRECTION_PIN         GPIO_NUM_2 
-#define Z_CS_PIN                X_CS_PIN  
 /**********************************************************/
 
 /********************COOLANT SETUP*************************/
@@ -77,10 +73,10 @@
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
 #define X_LIMIT_PIN             GPIO_NUM_35
-#define AUXINPUT0_PIN           GPIO_NUM_0
 #define Y_LIMIT_PIN             GPIO_NUM_34
 #define Z_LIMIT_PIN             GPIO_NUM_39
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
+#define MACRO_BUTTON_0_PIN      GPIO_NUM_0      // MODE button
 /********************************************/
 
 /*********** CUSTOM PINS ************/
@@ -102,27 +98,27 @@
 #define DEFAULT_A_STEPS_PER_MM 200.0
 
 //max speed
-#    define DEFAULT_X_MAX_RATE 2500.0
-#    define DEFAULT_Y_MAX_RATE 2500.0
-#    define DEFAULT_Z_MAX_RATE 2500.0
+#define DEFAULT_X_MAX_RATE 2500.0
+#define DEFAULT_Y_MAX_RATE 2500.0
+#define DEFAULT_Z_MAX_RATE 2500.0
 
-#    define DEFAULT_X_ACCELERATION 50.0
-#    define DEFAULT_Y_ACCELERATION 50.0
-#    define DEFAULT_Z_ACCELERATION 50.0
+#define DEFAULT_X_ACCELERATION 50.0
+#define DEFAULT_Y_ACCELERATION 50.0
+#define DEFAULT_Z_ACCELERATION 50.0
 
 //homing
 // Home Z axis to clear workspace, then home X and Y at same time
-#    define DEFAULT_HOMING_CYCLE_0 bit(Z_AXIS)
-#    define DEFAULT_HOMING_CYCLE_1 (bit(X_AXIS) | bit(Y_AXIS))
-#    define DEFAULT_HOMING_PULLOFF 2.5
+#define DEFAULT_HOMING_CYCLE_0 bit(Z_AXIS)
+#define DEFAULT_HOMING_CYCLE_1 (bit(X_AXIS) | bit(Y_AXIS))
+#define DEFAULT_HOMING_PULLOFF 2.5
 
 //Stepper settings
-#    define DEFAULT_STEP_PULSE_MICROSECONDS 4
-#    define DEFAULT_STEPPER_IDLE_LOCK_TIME 255
+#define DEFAULT_STEP_PULSE_MICROSECONDS 4
+#define DEFAULT_STEPPER_IDLE_LOCK_TIME 255
 
 //switches and probes - 1 =  NO switches, 0 = NC switches
-#    define DEFAULT_INVERT_PROBE_PIN 1
-#    define DEFAULT_INVERT_LIMIT_PINS 1
+#define DEFAULT_INVERT_PROBE_PIN 1
+#define DEFAULT_INVERT_LIMIT_PINS 1
 
 //Control Safety Door Switch
 #ifdef INVERT_CONTROL_PIN_MASK

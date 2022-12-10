@@ -107,6 +107,9 @@ namespace WebUI {
             esp_sleep_enable_timer_wakeup(sleep_time);
             grbl_send(CLIENT_ALL, "[MSG:Entering Deep Sleep Hibernation]\r\n");
             esp_deep_sleep_start();
+
+            // we should never get here
+            ESP.restart();
             while (1) {}
         }
     }

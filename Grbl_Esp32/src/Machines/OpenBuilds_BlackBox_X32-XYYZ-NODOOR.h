@@ -73,10 +73,10 @@
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
 #define X_LIMIT_PIN             GPIO_NUM_35
-#define AUXINPUT0_PIN           GPIO_NUM_0
 #define Y_LIMIT_PIN             GPIO_NUM_34
 #define Z_LIMIT_PIN             GPIO_NUM_39
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
+#define MACRO_BUTTON_0_PIN      GPIO_NUM_0      // MODE button
 /********************************************/
 
 /*********** CUSTOM PINS ************/
