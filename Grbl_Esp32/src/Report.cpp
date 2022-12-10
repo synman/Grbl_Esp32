@@ -806,7 +806,7 @@ void report_gcode_comment(char* comment) {
 }
 
 void report_machine_type(uint8_t client) {
-    grbl_msg_sendf(client, MsgLevel::Info, "Using machine:%s", MACHINE_NAME);
+    grbl_msg_sendf(client, MsgLevel::Info, "Using machine: %s", MACHINE_NAME);
 }
 
 /*

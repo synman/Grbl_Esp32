@@ -21,10 +21,8 @@
     along with Grbl_ESP32.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 //Name your machine configuration - this can be viewed real-time using the $i command
 #define MACHINE_NAME "OpenBuilds_BlackBox_X32-XYYZ-DOOR"
-
 
 //Define the number of Axis being used (not the number of motors needed - ex. XYYZ machine is still 3 axis) 
 #ifdef N_AXIS
@@ -34,6 +32,9 @@
 #define MAX_AXIS 3
 
 /**************************MOTOR SETUP*********************/
+#define STEPPERS_DISABLE_PIN    GPIO_NUM_17
+#define DEFAULT_INVERT_ST_ENABLE 1
+
 // X motor connects to the 1st driver, and the X port on the case 
 #define X_STEP_PIN              GPIO_NUM_12
 #define X_DIRECTION_PIN         GPIO_NUM_14
@@ -53,13 +54,15 @@
 #define Z_STEP_PIN              GPIO_NUM_15 
 #define Z_DIRECTION_PIN         GPIO_NUM_2 
 #define Z_CS_PIN                X_CS_PIN  
+/**********************************************************/
 
+/********************COOLANT SETUP*************************/
 // Coolant output terminal is a switched ground output (low side switch)
 // Defaulted to Mist coolant: Turn on with M7 and off with M9
 #define COOLANT_MIST_PIN        GPIO_NUM_21
-
 //Option:  Flood coolant - comment out the mist coolant line, and uncomment the below line
 // #define COOLANT_FLOOD_PIN		GPIO_NUM_21
+/**********************************************************/
 
 /*********** Spindle VFD and Laser Setup ******************/
 #define SPINDLE_TYPE          SpindleType::NONE
@@ -69,7 +72,7 @@
 #define SPINDLE_DIR_PIN         GPIO_NUM_4
 
 #define DEFAULT_SPINDLE_RPM_MAX     1000
-/********************************************/
+/***********************************************************/
 
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
@@ -80,12 +83,16 @@
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
 /********************************************/
 
-
+/*********** CUSTOM PINS ************/
 #define GRBL_SPI_FREQ 4000000
 #define GRBL_SPI_SS 5
 #define GRBL_SPI_MOSI 23
 #define GRBL_SPI_MISO 19
 #define GRBL_SPI_SCK 18
+/************************************/
+
+// Use a custom name for host, AP SSID, and BT GATT
+#define CUSTOM_NET_NAME "BlackBox-X32"
 
 // Default configuration - assuming screw TR8*8 screw driven machine in XYYZ config
 //steps per mm - use 200 for TR8*8 screws, and 26.667 for belts

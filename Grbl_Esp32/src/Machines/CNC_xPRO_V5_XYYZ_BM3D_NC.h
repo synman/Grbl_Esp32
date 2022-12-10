@@ -127,7 +127,8 @@ These correspond to the specific hardware on the controller.  */
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
 /********************************************/
 
-
+// Use a custom name for host, AP SSID, and BT GATT
+#define CUSTOM_NET_NAME "xPro-V5"
 
 // Default configuration - assuming screw TR8*8 screw driven machine in XYYZ config
 //steps per mm - use 200 for TR8*8 screws, and 26.667 for belts

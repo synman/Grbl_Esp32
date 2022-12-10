@@ -24,7 +24,11 @@
 #endif
 
 //defaults values
-const char* const DEFAULT_BT_NAME = "BlackBox_X32-BT";
+#ifdef CUSTOM_NET_NAME
+    const char* const DEFAULT_BT_NAME = CUSTOM_NET_NAME;
+#else
+    const char* const DEFAULT_BT_NAME = "Gbrl_Esp32";
+#endif
 
 #include <BluetoothSerial.h>
 

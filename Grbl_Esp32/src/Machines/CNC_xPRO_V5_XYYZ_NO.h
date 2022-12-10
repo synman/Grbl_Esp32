@@ -126,6 +126,9 @@ These correspond to the specific hardware on the controller.  */
 #define CONTROL_SAFETY_DOOR_PIN GPIO_NUM_16
 /********************************************/
 
+// Use a custom name for host, AP SSID, and BT GATT
+#define CUSTOM_NET_NAME "xPro-V5"
+
 //#define DEFAULT_USER_MACRO1 "!"
 //#define DEFAULT_USER_MACRO2	"~" 
 

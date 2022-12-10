@@ -2,13 +2,14 @@
 
 # Grbl (CNC Controller) For ESP32
 
-## Get the Next Generation!
+I have elected to keep Grbl_Esp32 alive by continuing to build upon, and extend support, to this awesome product 
+originally developed by bdring and the original Grbl creators before him.
 
-<img src="https://github.com/bdring/FluidNC/wiki/images/logos/FluidNC.svg" width="200">
+Currently, my efforts are focused on providing support for the OpenBuilds BlackBox X32 and the Spark Concepts xPro V5.
 
-The next generation of Grbl_ESP32 was such a massive upgrade we decided to change the name. It is called **FluidNC** and is [available here](https://github.com/bdring/FluidNC). Please check it out and give us a star. It is compatible with all Grbl_ESP32 hardware.
+You can find firmware binaries for both within the [firmware](https://github.com/synman/Grbl_Esp32/tree/main/firmware) folder.
 
-This version is only being maintained with existing features. All new features are targeted at FluidNC.
+Usage of the word "I" beyond this point, I believe, is bdring.
 
 ### Project Overview
 

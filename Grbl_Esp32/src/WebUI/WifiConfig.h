@@ -40,7 +40,11 @@ namespace WebUI {
     static const int ESP_APPLY_NOW = 1;
 
     //defaults values
-    static const char* DEFAULT_HOSTNAME = "CNC-BLACKBOX-X32";
+#ifdef CUSTOM_NET_NAME
+    static const char* DEFAULT_HOSTNAME = CUSTOM_NET_NAME;
+#else
+    static const char* DEFAULT_HOSTNAME = "Grbl_Esp32";
+#endif
 #ifdef CONNECT_TO_SSID
     static const char* DEFAULT_STA_SSID = CONNECT_TO_SSID;
     static const char* DEFAULT_STA_PWD  = SSID_PASSWORD;
@@ -51,7 +55,11 @@ namespace WebUI {
     static const char* DEFAULT_STA_IP            = "0.0.0.0";
     static const char* DEFAULT_STA_GW            = "0.0.0.0";
     static const char* DEFAULT_STA_MK            = "0.0.0.0";
-    static const char* DEFAULT_AP_SSID           = "CNC_BLACKBOX_X32";
+#ifdef CUSTOM_NET_NAME
+    static const char* DEFAULT_AP_SSID           = CUSTOM_NET_NAME;
+#else
+    static const char* DEFAULT_AP_SSID           = "Grbl_Esp32";
+#endif
     static const char* DEFAULT_AP_PWD            = "";
     static const char* DEFAULT_AP_IP             = "192.168.0.1";
     static const char* DEFAULT_AP_MK             = "255.255.255.0";
