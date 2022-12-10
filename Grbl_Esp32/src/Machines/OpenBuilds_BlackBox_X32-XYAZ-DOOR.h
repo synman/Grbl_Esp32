@@ -68,6 +68,8 @@
 #define SPINDLE_DIR_PIN         GPIO_NUM_4
 
 #define DEFAULT_SPINDLE_RPM_MAX     1000
+#define DEFAULT_SPINDLE_DELAY_SPINDOWN 10
+#define DEFAULT_SPINDLE_DELAY_SPINUP 10
 /**********************************************************/
 
 /***********   Input Pins  ******************/
