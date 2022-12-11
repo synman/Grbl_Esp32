@@ -130,4 +130,4 @@
 // For NO Door switch INVERT_CONTROL_PIN_MASK = B00001111
 // Macro3 | Macro2 | Macro 1| Macr0 |Cycle Start | Feed Hold | Reset | Safety Door
 // 1 for NO switch, 0 for NC switch
-#	  define INVERT_CONTROL_PIN_MASK B01111110
+#define INVERT_CONTROL_PIN_MASK B01111110

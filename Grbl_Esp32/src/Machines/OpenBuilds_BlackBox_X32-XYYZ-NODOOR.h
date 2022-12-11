@@ -70,7 +70,7 @@
 #define DEFAULT_SPINDLE_RPM_MAX     1000
 #define DEFAULT_SPINDLE_DELAY_SPINDOWN 10
 #define DEFAULT_SPINDLE_DELAY_SPINUP 10
-/**********************************************************/
+/***********************************************************/
 
 /***********   Input Pins  ******************/
 #define PROBE_PIN               GPIO_NUM_22
@@ -99,6 +99,7 @@
 #define DEFAULT_Z_STEPS_PER_MM 200.0
 #define DEFAULT_A_STEPS_PER_MM 200.0
 
+//max speed
 #define DEFAULT_X_MAX_RATE 2500.0
 #define DEFAULT_Y_MAX_RATE 2500.0
 #define DEFAULT_Z_MAX_RATE 2500.0
