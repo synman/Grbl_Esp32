@@ -68,7 +68,7 @@
 
 #define DEFAULT_SPINDLE_RPM_MAX     1000
 #define DEFAULT_SPINDLE_DELAY_SPINDOWN 10
-#define DEFAULT_SPINDLE_DELAY_SPINUP 10
+#define DEFAULT_SPINDLE_DELAY_SPINUP 30
 /***********************************************************/
 
 /***********   Input Pins  ******************/
